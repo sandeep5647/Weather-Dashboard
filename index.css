@@ -1,0 +1,96 @@
+html{
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url("image/background-image.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+}
+
+.navbar {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-right: 2rem;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+}
+
+.search-box input {
+  padding: .5rem;
+  margin-right: .5rem;
+}
+
+.search-box button {
+  padding: .5rem 1rem;
+}
+
+.container {
+  max-width: 65rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.weather-image {
+   padding: 3rem 7rem;
+   font-size: 2rem;
+}
+.weather-info{
+  font-size: 2rem;
+}
+
+.weather-card {
+  background-color: #f2f2f2;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.weather-card.today {
+  flex-direction: row;
+}
+
+.weather-card.today .weather-info {
+  text-align: left;
+}
+
+.weather-card.today .weather-image {
+  margin-right: 2rem;
+}
+
+.logo {
+  font-size: 3.2rem;
+  font-weight: lighter;
+  font-style: italic;
+  color: aqua;
+}
+
+@media(max-width:998px){
+  html{
+    font-size: 55%;
+  }
+}
+
+@media(max-width:768px){
+  html{
+    font-size: 45%;
+  }
+}
+
+/* font-size: 62.5%
+   font-size: 10px
+   font-size: 1rem       these are same */ 
