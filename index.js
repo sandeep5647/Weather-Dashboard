@@ -1,40 +1,73 @@
 document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('searchBtn').addEventListener('click', function () {
-      
-      var cityName = document.querySelector('.input-box').value;
+    // Check if Geolocation is supported by the browser
+    if (navigator.geolocation) {
+        // Get current location
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
 
-      getWeatherData(cityName);
-  });
+            // Get weather data based on current location
+            getWeatherDataByCoords(latitude, longitude);
+        }, function (error) {
+            console.error('Error getting current location:', error);
+        });
+    }
 
-  document.querySelector('.input-box').addEventListener('keyup', function (event) {
-      if (event.key === 'Enter') {
-          var cityName = document.querySelector('.input-box').value;
-          getWeatherData(cityName);
-      }
-  });
+    document.getElementById('searchBtn').addEventListener('click', function () {
+        var cityName = document.querySelector('.input-box').value;
+        getWeatherData(cityName);
+    });
+
+    document.querySelector('.input-box').addEventListener('keyup', function (event) {
+        if (event.key === 'Enter') {
+            var cityName = document.querySelector('.input-box').value;
+            getWeatherData(cityName);
+        }
+    });
 });
 
+function getWeatherDataByCoords(latitude, longitude) {
+    var apiKey = "9b497f5a811dc92ff9671855f4acdb8d";
+    var apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+
+    fetch(apiUrl)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            if (data.cod && data.cod !== '404') {
+                updateWeatherInfo(data);
+                updateImage(data);
+                console.log(data);
+            } else {
+                alert('City not found. Please enter a valid city name.');
+            }
+        })
+        .catch(function (error) {
+            console.log('Error fetching weather data:', error);
+        });
+}
+
 function getWeatherData(cityName) {
+    var apiKey = "9b497f5a811dc92ff9671855f4acdb8d";
+    var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
 
-  var apiKey = "9b497f5a811dc92ff9671855f4acdb8d";
-  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
-
-  fetch(apiUrl)
-      .then(function (response) {
-          return response.json();
-      })
-      .then(function (data) {          
-          if (data.cod && data.cod !== '404') {
-              updateWeatherInfo(data);  
-              updateImage(data);
-              console.log(data);
-          } else {
-              alert('City not found. Please enter a valid city name.');
-          }
-      })
-      .catch(function (error) {
-          console.log('Error fetching weather data:', error);
-      });
+    fetch(apiUrl)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            if (data.cod && data.cod !== '404') {
+                updateWeatherInfo(data);
+                updateImage(data);
+                console.log(data);
+            } else {
+                alert('City not found. Please enter a valid city name.');
+            }
+        })
+        .catch(function (error) {
+            console.log('Error fetching weather data:', error);
+        });
 }
 
   function updateWeatherInfo(weatherData) {
