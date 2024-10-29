@@ -24,8 +24,5 @@ This weather forecasting project is designed to provide accurate and up-to-date 
 
 - **Backend Framework:** JavaScript is used for backend.
 
-## Getting Started
-
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/sandeep5647/Weather-App.git
+### Live Demo
+[https://sandeep5647.github.io/Weather-Dashboard/](https://sandeep5647.github.io/Weather-Dashboard/)
